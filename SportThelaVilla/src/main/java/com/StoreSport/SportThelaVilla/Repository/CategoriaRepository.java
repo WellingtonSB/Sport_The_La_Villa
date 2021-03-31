@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.StoreSport.SportThelaVilla.Model.Categoria;
 
 @Repository
-public interface CategoriaRepository  extends JpaRepository<Categoria, Long> {
-	public List<Categoria> findAllByNomeContainingIgnoreCase (String nome);
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+	public List<Categoria> findAllByNomeContainingIgnoreCase(String nome);
+	public List<Categoria> findAllByDescricaoContainingIgnoreCase(String descricao);
 }

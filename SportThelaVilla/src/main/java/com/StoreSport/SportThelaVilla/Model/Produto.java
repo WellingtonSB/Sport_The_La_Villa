@@ -1,14 +1,12 @@
 package com.StoreSport.SportThelaVilla.Model;
 
-import java.util.*;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -28,16 +26,25 @@ public class Produto {
 	private long id;
 
 	@NotNull
-	@Size(min = 3, max = 30)
+	@Size(min = 3, max = 100)
+	@Column(unique = true)
 	private String nome;
 
 	@NotNull
-	@Size(min =1, max = 4)
+	@Size(max = 30)
 	private String tamanho;
 
 	@NotNull
 	@Digits(integer = 5, fraction = 2)
 	private double preco;
+
+	@NotNull
+	@Size(max = 9)
+	private String genero;
+
+	@NotNull
+	@Size(max = 30)
+	private String cor;
 
 	@NotNull
 	@URL
@@ -139,6 +146,22 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 }

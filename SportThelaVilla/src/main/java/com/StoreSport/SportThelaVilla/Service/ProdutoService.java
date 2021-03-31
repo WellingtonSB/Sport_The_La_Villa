@@ -19,7 +19,7 @@ public class ProdutoService {
 
 		List<Produto> produtos = repository.findAll();
 
-		int last = produtos.size() - 1;
+		int last = produtos.size()- 1;
 
 		if (produtos.size() != 0) {
 
