@@ -1,12 +1,17 @@
 package com.StoreSport.SportThelaVilla.Model;
 
+import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -53,12 +58,22 @@ public class Produto {
 	@NotNull
 	@Size(max = 240)
 	private String descricao;
-
+	
 	@NotNull
-	@Digits(integer = 5, fraction = 2)
-	private int estoque;
-
+	private int qtdProduto;
+	
 	private long codigoBarra;
+
+	/*
+	 * caso tenha promocao, colocar uma porcentagem em cima do valor final do
+	 * produto
+	 */
+	private double promocao;
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "compra", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	@JsonIgnoreProperties({ "nome", "email", "senha", "usuario", "produtos", "carrinho" })
+	private List<Usuario> usuarios = new ArrayList<>();
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
@@ -124,14 +139,6 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public int getEstoque() {
-		return estoque;
-	}
-
-	public void setEstoque(int estoque) {
-		this.estoque = estoque;
-	}
-
 	public Marca getMarca() {
 		return marca;
 	}
@@ -163,5 +170,31 @@ public class Produto {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public double getPromocao() {
+		return promocao;
+	}
+
+	public void setPromocao(double promocao) {
+		this.promocao = promocao;
+	}
+
+	public int getQtdProduto() {
+		return qtdProduto;
+	}
+
+	public void setQtdProduto(int qtdProduto) {
+		this.qtdProduto = qtdProduto;
+	}
+
+	
 
 }

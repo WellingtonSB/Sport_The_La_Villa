@@ -24,88 +24,60 @@ public class Loja {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-
 	@NotNull
 	@Size(min = 3, max = 30)
 	private String nome;
-	
 
 	@NotNull
 	@Size(min = 3, max = 40)
 	private String endereco;
-	
 
 	@NotNull
 	@URL
 	private String imagem;
 
-
-	@OneToMany(mappedBy = "loja", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("loja")
-	private List<Promocao> promocao;
-	
 	@OneToMany(mappedBy = "loja", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("loja")
 	private List<Categoria> categoria;
-	
+
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getEndereco() {
 		return endereco;
 	}
-
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
-
 	public String getImagem() {
 		return imagem;
 	}
-
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
 
-
-	public List<Promocao> getPromocao() {
-		return promocao;
-	}
-
-
-	public void setPromocoes(List<Promocao> promocao) {
-		this.promocao = promocao;
-	}
-
-
 	public List<Categoria> getCategoria() {
 		return categoria;
 	}
 
-
 	public void setCategoria(List<Categoria> categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
 }

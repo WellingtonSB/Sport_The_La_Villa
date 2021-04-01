@@ -39,9 +39,7 @@ public class Categoria {
 	@URL
 	private String imagem;
 
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("categoria")
-	private List<Promocao> promocao;
+
 
 	@ManyToOne
 	@JsonIgnoreProperties("categoria")
@@ -83,13 +81,7 @@ public class Categoria {
 		this.imagem = imagem;
 	}
 
-	public List<Promocao> getPromocao() {
-		return promocao;
-	}
 
-	public void setPromocao(List<Promocao> promocao) {
-		this.promocao = promocao;
-	}
 
 	public Loja getLoja() {
 		return loja;

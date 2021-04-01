@@ -65,9 +65,25 @@ public class ProdutoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.cadastrarProduto(produto));
 	}
 
+	/*
+	 * EXPLICACAO URI:
+	 * 
+	 * /compra -> nome da tabela associativa /usuarios -> nome da lista de usuarios
+	 * dentro da classe Produto /produtos -> nome da lista de produtos dentro da
+	 * classe Usuario
+	 * 
+	 */
+	@PutMapping("/compra/usuarios/{idProduto}/produtos/{idUsuario}")
+	public ResponseEntity<Produto> postCompra(@PathVariable long idProduto, @PathVariable long idUsuario) {
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.compraProduto(idProduto, idUsuario));
+	}
+
 	@PutMapping
 	public ResponseEntity<Produto> put(@RequestBody Produto produto) {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(produto));
+		service.ajustarPreco(produto);
+		return ResponseEntity.ok(repository.save(produto));
+
 	}
 
 	@DeleteMapping("/{id}")

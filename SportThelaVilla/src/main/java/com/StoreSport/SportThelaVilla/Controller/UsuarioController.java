@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.StoreSport.SportThelaVilla.Model.UserLogin;
 import com.StoreSport.SportThelaVilla.Model.Usuario;
+import com.StoreSport.SportThelaVilla.Service.ProdutoService;
 import com.StoreSport.SportThelaVilla.Service.UsuarioService;
 
 @RestController
@@ -22,6 +25,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService service;
+	
+	@Autowired
+	private ProdutoService produtoService;
 
 	@PostMapping("/logar")
 	public ResponseEntity<UserLogin> Autentication(@RequestBody Optional<UserLogin> user) {
@@ -38,6 +44,12 @@ public class UsuarioController {
 			return ResponseEntity.badRequest().build();
 		}
 
+	}
+	
+	@DeleteMapping("/compra/produtos/{idUsuario}/usuarios/{idProduto}")
+	public void postCompra(@PathVariable long idProduto, @PathVariable long idUsuario){
+		
+		produtoService.excluirProduto(idProduto, idUsuario);
 	}
 
 }
