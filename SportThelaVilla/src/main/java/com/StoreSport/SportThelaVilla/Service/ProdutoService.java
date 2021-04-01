@@ -152,7 +152,7 @@ public class ProdutoService {
 
 			/*
 			 * CASO O VALOR DO PRECO SEJA DIFERENTE E O VALOR DA PROMOCAO TAMBEM SEJA
-			 * DIFERENTE
+			 * DIFERENTE.
 			 */
 		} else {
 			produtoExistente.get().setPreco(p);
