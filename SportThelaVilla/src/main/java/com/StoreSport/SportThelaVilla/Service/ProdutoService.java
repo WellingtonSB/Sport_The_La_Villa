@@ -5,8 +5,10 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.StoreSport.SportThelaVilla.Model.Carrinho;
 import com.StoreSport.SportThelaVilla.Model.Produto;
 import com.StoreSport.SportThelaVilla.Model.Usuario;
+import com.StoreSport.SportThelaVilla.Repository.CarrinhoRepository;
 import com.StoreSport.SportThelaVilla.Repository.ProdutoRepository;
 import com.StoreSport.SportThelaVilla.Repository.UsuarioRepository;
 
@@ -19,6 +21,9 @@ public class ProdutoService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private CarrinhoRepository carrinhoRepository;
 
 	public Produto cadastrarProduto(Produto produto) {
 
@@ -137,7 +142,7 @@ public class ProdutoService {
 		/*
 		 * CASO O VALOR DO PRECO SEJA O MESMO E O VALOR DA PROMOCAO TAMBEM SEJA O MESMO
 		 */
-		
+
 		if ((produtoExistente.get().getPreco() + desconto) == produto.getPreco()
 				&& produtoExistente.get().getPromocao() == produto.getPromocao()) {
 			if (p != produto.getPreco()) {
@@ -161,8 +166,7 @@ public class ProdutoService {
 			produto.setPreco(produto.getPreco() - resultado);
 
 			produtoRepository.save(produto);
-
 		}
-
 	}
+
 }

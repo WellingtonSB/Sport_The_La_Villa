@@ -28,7 +28,7 @@ public class Usuario {
 	private String nome;
 
 	@NotNull
-	@Size(max = 20)
+	@Size(max = 40)
 	private String email;
 
 	@NotNull
@@ -36,14 +36,14 @@ public class Usuario {
 	private String usuario;
 
 	@NotNull
-	@Size(min = 6, max = 8)
+	@Size(min = 5, max = 100)
 	private String senha;
 
 	private double carrinho;
 
 	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({ "nome", "tamanho", "preco", "genero", "cor", "imagem", "descricao", "codigoBarra", "marca",
-			"categoria", "qtdProduto" })
+			"categoria", "qtdProduto", "kmPreco", "distanciaCliente" })
 	private List<Produto> produtos = new ArrayList<>();
 
 	public long getId() {

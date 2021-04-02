@@ -63,7 +63,11 @@ public class Produto {
 	private int qtdProduto;
 	
 	private long codigoBarra;
-
+	
+	private double distanciaCliente;//verificar o metodo usado 
+	
+	private double kmPreco=9.99;
+	
 	/*
 	 * caso tenha promocao, colocar uma porcentagem em cima do valor final do
 	 * produto
@@ -193,6 +197,22 @@ public class Produto {
 
 	public void setQtdProduto(int qtdProduto) {
 		this.qtdProduto = qtdProduto;
+	}
+
+	public double getDistanciaCliente() {
+		return distanciaCliente;
+	}
+
+	public void setDistanciaCliente(double distanciaCliente) {
+		this.distanciaCliente = distanciaCliente;
+	}
+
+	public double getKmPreco() {
+		return kmPreco;
+	}
+
+	public void setKmPreco(double kmPreco) {
+		this.kmPreco = kmPreco;
 	}
 
 	
